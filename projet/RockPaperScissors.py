@@ -1,54 +1,71 @@
 import random
 
-#gestion des entrées
-choiceList = ["rock", "paper", "scissors"]
-computerWins = 0
-playerWins = 0
+#starting the game
+def game():
+    choiceList = ["rock", "paper", "scissors"]
+    computerWins = 0
+    playerWins = 0
+    # condition pour que le jeu ai plusieurs rounds
+    while playerWins <3 and computerWins <3:
+        while True: 
+            try: #gestion des erreurs de input: si le choix du joueur est compris dans la liste
+                print("Take a choice between rock, paper and scissors")
+                playerChoice = input() #INPUT retoune de base une chaine de caractere
+                computerChoice = random.choice(choiceList) 
+                if playerChoice not in choiceList:
+                    raise Exception #exception personalisé il faut raise, il fut lever l'exception
+                else:
+                    break #arreter la boucle infini
+            except Exception:
+                print("Wrong choice! Try again please")
 
+        print(f"Computer choice: {computerChoice}")
 
-while playerWins <3 and computerWins <3:
+        #gestion des points
+        if playerChoice == "rock" and computerChoice == "scissors":
+            print("You won")
+            playerWins += 1
+        elif playerChoice == "scissors" and computerChoice == "papier":
+            print("Round won")
+            playerWins += 1
+        elif playerChoice == "paper" and computerChoice == "rock":
+            print("Round won")
+            playerWins += 1
+        elif playerChoice == computerChoice:
+            print("Round draw")
+            playerWins += 0
+            computerWins += 0
+        else:
+            print("Round lost")
+            computerWins += 1
+        
+        print(f"Your win counter: {playerWins}")
+        print(f"Computer win counter: {computerWins}")
+    # condition de victoire
+    if playerChoice == 3:
+        print("Nice game, you won!")
+    elif computerWins == 3:
+        print("Game over, the computer won the game!")
+
+#restart the game
+def retry():
     while True:
+        print("Do you want to play again?: ")
+        playagainlist = ["yes", "Yes", "no", "No"]
+        playAgainchoice = input()
         try:
-            print("Take a choice between rock, paper and scissors")
-            playerChoice = input() #INPUT retoune de base une chaine de caractere
-            computerChoice = random.choice(choiceList)
-            if playerChoice not in choiceList:
-                raise Exception #exception personalisé il faut raise, il fut lever l'exception
-            else:
-                break #fermer la boucle infini
+            if playAgainchoice not in playagainlist:
+                raise Exception
+            elif playAgainchoice == "yes" or playAgainchoice == "Yes":
+                game()
+            elif playAgainchoice == "no" or playAgainchoice == "No":
+                break
         except Exception:
-            print("Wrong choice! Try again please")
+            print("Not a good choice")
 
-    print(f"Computer choice: {computerChoice}")
-    # print(f"Player choice: {playerChoice}")
-
-    if playerChoice == "rock" and computerChoice == "scissors":
-        print("You won")
-        playerWins += 1
-        # print(f"Your win counter: {playerWins}")
-    elif playerChoice == "scissors" and computerChoice == "papier":
-        print("Round won")
-        playerWins += 1
-        # print(f"Your win counter: {playerWins}")
-    elif playerChoice == "paper" and computerChoice == "rock":
-        print("Round won")
-        playerWins += 1
-        # print(f"Your win counter: {playerWins}")
-    elif playerChoice == computerChoice:
-        print("Round draw")
-        playerWins += 0
-        computerWins += 0
-    else:
-        print("Round lost")
-        computerWins += 1
-        # print(f"Computer win counter: {computerWins}")
-
-    print(f"Your win counter: {playerWins}")
-    print(f"Computer win counter: {computerWins}")
-if playerChoice == 3:
-    print("Nice game, you won!")
-elif computerWins == 3:
-    print("Game over, the computer won the game!")
+# appelle des fonctions
+game()
+retry()
 
 
 
@@ -79,19 +96,23 @@ elif computerWins == 3:
 
 # 3. Logique de comparaison :
 # - Comparer les deux choix selon les règles du jeu
-# - Identifier le gagnant en utilisant les conditions de victoire
+# - Identifier le gagnant en utilisant les conditions de victoire ok
 
 # 4. Gestion du score (optionnel) :
-# - Maintenir un compteur pour le score du joueur et de l'ordinateur
-# - Afficher le score après chaque manche
+# - Maintenir un compteur pour le score du joueur et de l'ordinateur ok
+# - Afficher le score après chaque manche ok
 
 # 5. Boucle de jeu :
-# - Permettre de rejouer plusieurs parties
+# - Permettre de rejouer plusieurs parties ok
 # - Donner l'option de quitter le jeu
 
 # 6. Interface utilisateur :
 # - Afficher clairement les choix ok
 # - Annoncer le résultat de chaque manche ok
 # - Donner des instructions claires au joueur
+
+# 6. idee
+# - demander le nom de l'utilisateur pour pouvoir utiliser son nom pendant la partie
+
 
 # Voulez-vous que je détaille certains de ces aspects en particulier ?
