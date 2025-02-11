@@ -9,10 +9,9 @@ movies = { "Action": ["Mad Max: Fury Road", "John Wick", "Die Hard", "Gladiator"
 
 print(" Welcome to the movie night recommender!🎬")
 print("Available genres : Action, Comedy, Drama, Sci-fi, Horror")
-print("Enter a genre: ", end=" ")
 while True:
     try:
-        genre = input("")
+        genre = input("Enter a genre: ")
         choice = rd.choice(movies[genre])
         if genre not in movies.keys():
             raise Exception
