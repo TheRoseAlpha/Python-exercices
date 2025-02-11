@@ -13,12 +13,13 @@ print("Enter a genre: ", end=" ")
 while True:
     try:
         genre = input("")
+        choice = rd.choice(movies[genre])
         if genre not in movies.keys():
             raise Exception
         else:
             break
     except Exception:
         print("Sorry, that genre is not available. Try again!")
-print(f"You should watch: {movies[genre][0]}") 
+print(f"You should watch: {choice}") 
 
 # next step: put this program in a gui :)
