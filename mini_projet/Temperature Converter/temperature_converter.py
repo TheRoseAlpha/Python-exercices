@@ -31,13 +31,13 @@ temperature = float(input("Enter the temperature: "))
 
 
 while True:
+    print("Choose the convertion: \n"
+        "1. Celsius to Fahrenheit\n"
+        "2. Fahrenheit to Celsius\n"
+        "3. Celsius to Kelvin\n"
+        "4. Kelvin to Celsius\n")
+    convertion_type = int(input("Enter your choice (1-4): "))
     try:
-        print("Choose the convertion: \n"
-            "1. Celsius to Fahrenheit\n"
-            "2. Fahrenheit to Celsius\n"
-            "3. Celsius to Kelvin\n"
-            "4. Kelvin to Celsius\n")
-        convertion_type = int(input("Enter your choice (1-4): "))
         if convertion_type not in range(1, 5):
             raise Exception
         else:
