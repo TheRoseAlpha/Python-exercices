@@ -1,0 +1,142 @@
+'''Public Member: Accessible anywhere from otside oclass.
+Private Member: Accessible within the class "_"
+Protected Member: Accessible within the class and its sub-classes "__"
+
+Name Mangling to access private members
+We can directly access private and protected variables from outside of a class through name mangling.
+The name mangling is created on an identifier by adding two leading underscores and one trailing underscore, 
+like this _classname__dataMember, where classname is the current class, and data member is the private variable name.'''
+
+
+class Vehicle:
+    def __init__(self, name, max_speed, mile_age):
+        self.name = name
+        self.max_speed = max_speed
+        self.mile_age = mile_age
+
+    def __str__(self):
+        return f"Vehicle Name: {self.name}\nSpeed: {self.max_speed}\nMileage: {self.mile_age}\n{self.seating_capacity()}"
+    
+    def seating_capacity(self, capacity):
+        return f"The seating capacity of a {self.name} is {capacity} passengers"
+
+class Bus(Vehicle):
+    # Create a Bus class that inherits from the Vehicle class. Give the capacity argument of Bus.seating_capacity() a default value of 50.
+    def seating_capacity(self, capacity = 50):
+        return f"The seating capacity of a {self.name} is {capacity} passengers"
+
+bus = Bus("School Volvo", 180, 12)
+print(bus)
+
+
+''' https://chatgpt.com/c/67c625e6-732c-8005-bddb-09388da81444 C'est un excellent projet pour t'exercer avec la POO ! Voici quelques suggestions d'attributs, de méthodes et d'autres classes enfants que tu pourrais ajouter pour enrichir ton projet.
+
+### **1. Attributs supplémentaires pour la classe `Vehicule` (classe parente)**
+- **Fuel type** (type de carburant) : "Essence", "Diesel", "Électrique", etc.
+- **Color** (couleur) : pour indiquer la couleur du véhicule.
+- **Engine type** (type de moteur) : "V8", "V6", "Électrique", "Hybride", etc.
+- **Owner** (propriétaire) : le nom du propriétaire ou une référence à un objet de classe `Personne` par exemple.
+- **License plate** (plaque d'immatriculation) : pour identifier le véhicule.
+- **Year of manufacture** (année de fabrication) : pour déterminer l'âge du véhicule.
+- **Current location** (position actuelle) : peut être une latitude et une longitude (utile pour un véhicule en mouvement).
+- **Service status** : si le véhicule est en service, hors service, en réparation, etc.
+
+### **2. Méthodes supplémentaires pour la classe `Vehicule`**
+- **start()** : démarre le véhicule.
+- **stop()** : arrête le véhicule.
+- **drive()** : déplace le véhicule d'un endroit à un autre.
+- **refuel()** : ajoute du carburant au véhicule.
+- **maintenance()** : indique que le véhicule a besoin d'une maintenance.
+- **check_mileage()** : retourne le kilométrage actuel.
+- **get_age()** : retourne l'âge du véhicule en fonction de l'année de fabrication.
+- **get_location()** : retourne la localisation actuelle du véhicule.
+
+---
+
+### **3. Classes enfants possibles**
+
+#### **Classe `Bus`**
+La classe `Bus` pourrait hériter de `Vehicule`, mais avec des attributs et des méthodes spécifiques :
+- **Attributs** :
+  - **Passenger capacity** (capacité des passagers) : nombre maximal de passagers.
+  - **Route** (itinéraire) : un objet représentant l'itinéraire du bus.
+  - **Number of stops** (nombre d'arrêts) : combien d'arrêts un bus effectue sur son trajet.
+  - **Bus type** (type de bus) : par exemple, "autobus", "minibus", "double decker".
+  
+- **Méthodes** :
+  - **pick_up_passengers()** : embarque des passagers.
+  - **drop_off_passengers()** : dépose des passagers.
+  - **announce_next_stop()** : annonce le prochain arrêt.
+  - **add_stop()** : ajoute un arrêt au parcours.
+  - **check_capacity()** : vérifie si la capacité maximale de passagers est atteinte.
+
+---
+
+#### **Classe `Truck` (Camion)**
+Une classe `Truck` pourrait également hériter de `Vehicule` et avoir des attributs spécifiques :
+- **Attributs** :
+  - **Cargo capacity** (capacité de charge) : poids maximal que le camion peut transporter.
+  - **Load type** (type de charge) : "colis", "matériaux", "produits alimentaires", etc.
+  - **Cargo type** (type de cargaison) : exemple "doux", "fragile", "périssable".
+  - **Number of axles** (nombre d'essieux) : pour gérer la logistique du transport.
+
+- **Méthodes** :
+  - **load_cargo()** : charge la cargaison.
+  - **unload_cargo()** : décharge la cargaison.
+  - **check_weight()** : vérifie si le poids de la cargaison est dans la limite.
+  - **deliver()** : livre la cargaison à une destination spécifique.
+  - **calculate_fuel_consumption()** : calcule la consommation de carburant en fonction du poids.
+
+---
+
+#### **Classe `ElectricCar` (Voiture Électrique)**
+Une classe `ElectricCar` pourrait hériter de `Vehicule` avec des fonctionnalités spécifiques pour les véhicules électriques :
+- **Attributs** :
+  - **Battery capacity** (capacité de la batterie) : en kWh.
+  - **Charging time** (temps de recharge) : le temps nécessaire pour charger la voiture.
+  - **Range** (autonomie) : distance maximale que la voiture peut parcourir avec une charge complète.
+
+- **Méthodes** :
+  - **charge()** : recharge la batterie du véhicule.
+  - **check_battery_level()** : vérifie le niveau de charge de la batterie.
+  - **calculate_range()** : calcule la distance restante avant que la batterie ne soit vide.
+  - **eco_mode()** : active un mode de conduite éco qui réduit la consommation d'énergie.
+
+---
+
+#### **Classe `Motorcycle` (Moto)**
+Une classe `Motorcycle` pourrait avoir des spécifications différentes, mais hériter des mêmes attributs de base :
+- **Attributs** :
+  - **Engine capacity** (capacité du moteur) : par exemple "600cc", "1000cc".
+  - **Has sidecar** (avec sidecar ou non) : un attribut booléen.
+  - **Number of wheels** (nombre de roues) : souvent 2, mais un sidecar en ajouterait une troisième.
+
+- **Méthodes** :
+  - **pop_a_wheelie()** : effectue un wheeling (facultatif et amusant !).
+  - **lean()** : méthode pour simuler une conduite en virage.
+  - **rev_engine()** : actionne le moteur de manière plus bruyante (pour l'effet sonore).
+  
+---
+
+### **4. Concepts additionnels**
+Tu pourrais également introduire certains concepts de la POO pour rendre ton projet plus intéressant :
+- **Encapsulation** : utiliser des getters et setters pour certains attributs afin de mieux contrôler l'accès aux données.
+- **Polymorphisme** : créer des méthodes avec le même nom mais qui se comportent différemment en fonction du type de véhicule (ex : `start()` pourrait être différente pour un bus, une moto, ou un camion).
+- **Abstraction** : définir une classe abstraite `Vehicule` qui sert de modèle pour les autres classes.
+- **Compositions et associations** : tu pourrais créer une classe `Personne` ou `Conducteur` et lui associer un ou plusieurs véhicules.
+
+---
+
+### **5. Suggestions d'extensions**
+- **Système de géolocalisation** : tu pourrais intégrer une classe `GPS` ou `Location` pour suivre la position en temps réel du véhicule.
+- **Gestion de flotte** : ajoute une classe `Fleet` qui gère plusieurs véhicules et offre des fonctionnalités comme ajouter un véhicule, calculer la distance parcourue par la flotte, etc.
+- **Simulation d'événements** : comme des pannes, des accidents, des réparations, ou des contrôles de sécurité.
+
+### **6. Exemples de scénarios pratiques**
+- Gérer la logistique d'une entreprise de transport avec une flotte de camions, bus, et véhicules électriques.
+- Créer un système de transport public où les bus suivent des itinéraires, récupèrent des passagers et suivent un calendrier.
+- Créer une simulation de maintenance pour les véhicules : savoir quand un véhicule a besoin d'un contrôle, d'une révision, ou d'un entretien.
+
+En utilisant tous ces éléments, tu pourras faire un projet bien structuré et complet, tout en apprenant beaucoup sur la programmation orientée objet ! 😊'''
+
+    
