@@ -20,13 +20,12 @@ user_point = 0
 for question, answers in questions_dic.items():
     correct_answer = answers[0]
     sorted_answers = sorted(answers)
-    # print(sorted_answers)
 
     print(question)
+
     for label, answers in enumerate(sorted_answers, start=1):
         print(f"  {label}) {answers}")
 
-    # selected_number = int(input(f"{question}"))
     selected_number = int(input("Response: "))
     selected = sorted_answers[selected_number-1]
 
@@ -36,6 +35,10 @@ for question, answers in questions_dic.items():
     elif selected != correct_answer:
         print(f"Worg answer. The correct answer is {correct_answer}")
 
+if user_point > 3:
+    print(f"End of the quiz, your total point is {user_point}. Good job!")
+else:
+    print(f"End of the quiz, your total point is {user_point}. You can try again if you want to!")
 
     
-# print(questions_dic.items())
+    
