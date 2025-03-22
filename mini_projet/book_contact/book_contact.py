@@ -18,7 +18,6 @@ file_contact = open(file_location, "r")
 
 
 for line in file_contact:
-    # line = file_contact.readline()
     print(line)
 
 
