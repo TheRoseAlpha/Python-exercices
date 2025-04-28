@@ -5,7 +5,6 @@ Method: convert the string in a list do the swaping thing and then reconvert
 the list in a string with the join method
 '''
 
-m_string = input("Give a string: ")
 
 
 def swap_case(s):
@@ -22,11 +21,17 @@ def swap_case(s):
 
     return final
 
-res_1 = swap_case("Www.HackerRank.com")  
-res_2 = swap_case("Pythonist 2")  
+
+m_string_1 = "Www.HackerRank.com"
+m_string_2 = "Pythonist 2"
+
+res_1 = swap_case(m_string_1)  
+res_2 = swap_case(m_string_2)  
 
 print(res_1)
 print(res_2)
 
+m_string = input("Give a string: ")
 result = swap_case(m_string)
 print(result)
+
